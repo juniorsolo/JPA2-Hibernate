@@ -44,7 +44,7 @@ public class ProdutoDao {
 		List<Predicate> predicates = new ArrayList<>();
 
 		if (!nome.isEmpty()) {
-			Predicate nomeIgual = criteriaBuilder.like(nomePath, nome);
+			Predicate nomeIgual = criteriaBuilder.like(nomePath, "%" + nome + "%");
 			predicates.add(nomeIgual);
 		}
 		if (categoriaId != null) {
