@@ -23,7 +23,7 @@ public class CriadorDeProdutos {
 	
 	@Autowired
 	private JpaTransactionManager transactionManager;
-	
+	/*
 	@PostConstruct
 	public void init() {
 		TransactionTemplate template = new TransactionTemplate(transactionManager);
@@ -111,6 +111,6 @@ public class CriadorDeProdutos {
 				
 			}
 		});		
-	}
+	}*/ //fim pos construct
 	
 }
