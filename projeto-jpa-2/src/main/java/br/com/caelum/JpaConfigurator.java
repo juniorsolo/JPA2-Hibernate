@@ -1,5 +1,6 @@
 package br.com.caelum;
 
+import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 import javax.persistence.EntityManagerFactory;
@@ -13,19 +14,34 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 @Configuration
 @EnableTransactionManagement
 public class JpaConfigurator {
 
 	@Bean
-	public DataSource getDataSource() {
+	public DataSource getDataSource() throws PropertyVetoException {
+		
+		// Data source pelo c3p0 que gerencia poll de conexoes
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		dataSource.setDriverClass("com.mysql.jdbc.Driver");
+		dataSource.setJdbcUrl("jdbc:mysql://127.0.0.1:3306/projetojpa");
+		dataSource.setUser("root");
+		dataSource.setPassword("root");
+		
+		dataSource.setMinPoolSize(3);
+		dataSource.setMaxPoolSize(5);
+		dataSource.setNumHelperThreads(15);
+		
+		/* Antigo dataSorce
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 	    dataSource.setUrl("jdbc:mysql://127.0.0.1:3306/projetojpa");
 	    dataSource.setUsername("root");
 	    dataSource.setPassword("root");
-
+		*/
 	    return dataSource;
 	}
 
