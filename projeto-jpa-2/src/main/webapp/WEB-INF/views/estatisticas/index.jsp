@@ -15,20 +15,20 @@
 					<table class="table table-striped">
 						<thead>
 							<tr>
+								<th>Em Cache</th>
 								<th>Hit</th>
 								<th>Miss</th>
-								<th>Conexões</th>
+								<th>Conexões Abertas</th>
+								<th>Conexões Mais Demorada</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr>
-								<td>Cache</td>
-								<!-- Hit -->
-								<td></td>
-								<!-- Miss -->
-								<td></td>
-								<! -- Conections -->
-								<td></td>
+								<td>${statistics.queryCachePutCount}</td>
+								<td>${statistics.queryCacheHitCount}</td>
+								<td>${statistics.queryCacheMissCount}</td>
+								<td>${statistics.connectCount}</td>
+								<td>${statistics.queryExecutionMaxTime}</td>
 							</tr>
 						</tbody>
 					</table>
